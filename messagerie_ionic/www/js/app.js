@@ -260,6 +260,7 @@ angular.module('mike', ['ionic', 'mike.services', 'mike.controllers'])
 
     ;
 
-    $urlRouterProvider.otherwise('/tab/messages');
+ // Definit la route qui sera lansé au lancement du site - l'url
+    $urlRouterProvider.otherwise('/walkthrough');
 
 })

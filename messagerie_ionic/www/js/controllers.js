@@ -5,6 +5,32 @@ angular.module('mike.controllers', [])
 })
 
 .controller('signCtrl', function($scope, $state, $ionicPopup) {
+	$scope.data = {};
+	//fonction login dans login.html
+	$scope.login = function(){
+		// console.log($scope.data)
+		//si le numero de tel et le mot de passe correspondent alors redirection vers la page chat
+		if(($scope.data.phone=="0674545902") && ($scope.data.password=="12345")){
+			//redirect to
+			//state de la route messages
+			$state.go('tab.messages');
+		// }else if($scope.data.phone ==""){
+		}else if(!angular.isDefined($scope.data.phone)){
+			// la variable $scope.data.phone est undefined, besoin de savoir si elle existe : if exists en php => angular.isDefined(variable) => ! le contraire => si elle existe on fait ça
+			console.log("remplir le bon numéro de téléphone")
+		}else{
+			console.log("REMPLIR LES CHAMPS")
+		}
+		console.log($scope.data)
+	}
+
+	$scope.register = function(){
+		if(!angular.isDefined($scope.data.phone)){
+			console.log('remplir le bon numéro ')
+		}
+	}
+
+
 
 })
 
