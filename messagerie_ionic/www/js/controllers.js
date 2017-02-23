@@ -4,10 +4,17 @@ angular.module('mike.controllers', [])
 
 })
 
-.controller('signCtrl', function($scope, $state, $ionicPopup, Login) {
+.controller('signCtrl', function($scope, $state, $ionicPopup, Login, $window) {
 	// appel de la factory factory dans services qu'on passe en paramètre de la fonction pour pouvoir l'utiliser
 
 	$scope.data = {};
+
+	$scope.goBack = function() {
+		// Fonction ngclick =  goBack()
+   		$window.history.back();
+   		//$window => propre à angular
+  	};
+
 	//fonction login dans login.html
 	$scope.login = function(){
 		// console.log($scope.data)
@@ -52,11 +59,11 @@ angular.module('mike.controllers', [])
 })
 
 .controller('tabCtrl', function($scope, $state) {
-
+	
 })
 
 .controller('messagesCtrl', function($scope, $state, $ionicPopup) {
-
+		
 })
 
 .controller('messagesDetail', function($scope, $state) {
@@ -123,7 +130,16 @@ angular.module('mike.controllers', [])
 
 })
 
-.controller('settingsCtrl', function($scope, $state) {
+
+.controller('settingsCtrl', function($scope, $state, Settings) {
+	//ajout de la factory Settings en paramètre
+	//logout
+	$scope.showPopupLogout = function(){
+		localStorage.clear();
+		//suppression du local storage
+		$state.go('login')
+		//redirection vers la page login
+	}
 
 })
 
