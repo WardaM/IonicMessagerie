@@ -1,6 +1,6 @@
 angular.module('mike', ['ionic', 'mike.services', 'mike.controllers'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$state) {
     $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -8,6 +8,12 @@ angular.module('mike', ['ionic', 'mike.services', 'mike.controllers'])
         }
         if (window.StatusBar)
             StatusBar.styleDefault();
+
+        //Auto connexion => on vérifie si on a du localstorage si oui on redirige directement l'utilisateur vers la page chat
+        //dans run car c'est au lancement de l'application
+
+        if(localStorage.getItem('user'))
+            $state.go('tab.messages');
     });
 })
 

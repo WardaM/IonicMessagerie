@@ -4,7 +4,9 @@ angular.module('mike.controllers', [])
 
 })
 
-.controller('signCtrl', function($scope, $state, $ionicPopup) {
+.controller('signCtrl', function($scope, $state, $ionicPopup, Login) {
+	// appel de la factory factory dans services qu'on passe en paramètre de la fonction pour pouvoir l'utiliser
+
 	$scope.data = {};
 	//fonction login dans login.html
 	$scope.login = function(){
@@ -26,10 +28,25 @@ angular.module('mike.controllers', [])
 
 	$scope.register = function(){
 		if(!angular.isDefined($scope.data.phone)){
+			//si data.phone n'est pas défini envoi du message d'erreur suivant
 			console.log('remplir le bon numéro ')
-		}
-	}
+		}else if (!angular.isDefined($scope.data.email)){
+			console.log('remplir le bon email ')
+		}else if (!angular.isDefined($scope.data.password)){
+			console.log('remplir le bon password ')
+		}else if(!angular.isDefined($scope.data.repassword)){
+			console.log('remplir la vérification de mdp ')
 
+		}else if($scope.data.password == $scope.data.repassword){
+			console.log("vérification du mot de passe checked");
+			//code pour ajouter dans localstorage
+			//appel de la fonction set dans service login factory
+			// Login.set($scope.data);
+			localStorage.setItem('user', JSON.stringify($scope.data));
+			$state.go('tab.messages');
+		}
+		
+	}
 
 
 })

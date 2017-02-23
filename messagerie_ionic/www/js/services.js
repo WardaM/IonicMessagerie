@@ -6,7 +6,14 @@ angular.module('mike.services', [])
             get: function() {},
             getId: function() {},
             getEmail: function() {},
-            set: function() {},
+            set: function(data) {
+                //Enregistrement user to localstorage
+                //JSON.stringify() => changer JSON en chaine de caractères
+                localStorage.setItem('user', JSON.stringify(data));
+                //1er argument la clé qu'on appelle 'user' : Le premier argument de setItem est la clé (toujours de type String). Elle précise l'endroit où sont stockées les données afin de pouvoir les y retrouver ultérieurement.
+                // localStorage.getItem('user', JSON.stringify(data));
+                return true;
+            },
             changePass: function() {}
         }
     }
